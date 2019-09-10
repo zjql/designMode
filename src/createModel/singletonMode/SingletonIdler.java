@@ -12,13 +12,14 @@ public class SingletonIdler {
      */
     private SingletonIdler(){}
 
-    private static SingletonIdler single = null;
+    private static volatile SingletonIdler single = null;
     /**
      * 普通
      * @return
      */
     public static SingletonIdler getInstance(){
         if(null == single ){
+            System.out.println("获取到懒汉式普通实例");
             single = new SingletonIdler();
         }
         return single;
@@ -26,17 +27,14 @@ public class SingletonIdler {
 
     /**
      * 线程同步
-     * 关键词 synchronized
-     * 说明：在并发编程中存在线程安全问题，主要原因有：
-     *       1.存在共享数据 2.多线程共同操作共享数据。
-     *       关键字synchronized可以保证在同一时刻，只有一个线程可以执行某个方法或某个代码块，
-     *       同时synchronized可以保证一个线程的变化可见（可见性），即可以代替volatile。
      * @return
      */
     public static synchronized SingletonIdler getInstanceSyn(){
         if(null == single){
+            System.out.println("获取到懒汉式线程同步实例");
             single = new SingletonIdler();
         }
+        System.out.println("获取到懒汉式线程同步实例，不为null");
         return single;
     }
 
@@ -48,10 +46,12 @@ public class SingletonIdler {
         if(null == single){
             synchronized (SingletonIdler.class){
                 if( null == single){
+                    System.out.println("获取到懒汉式双重检查锁定的实例");
                     single = new SingletonIdler();
                 }
             }
         }
+        System.out.println("获取到懒汉式线程同步实例，不为null");
         return single;
     }
 }

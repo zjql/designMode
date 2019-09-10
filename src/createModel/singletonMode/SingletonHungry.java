@@ -17,6 +17,7 @@ public class SingletonHungry {
     private static final SingletonHungry SINGLE = new SingletonHungry();
 
     public static SingletonHungry getInstance(){
+        System.out.println("获取到饿汉式单例");
         return SINGLE;
     }
 

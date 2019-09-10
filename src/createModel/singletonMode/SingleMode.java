@@ -12,6 +12,10 @@ public class SingleMode {
     public static void main(String[] args) {
 
         SingletonIdler.getInstance();
+        SingletonIdler.getInstanceSyn();
+        SingletonIdler.getInstanceDouble();
+
+        SingletonIdlerStatic.getInstance();
 
         //初始化就初始了所有引用，很占内存空间
         SingletonHungry.getInstance();
